@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { configValidationSchema } from './config.schema';
+import { NotesModule } from './notes/notes.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { configValidationSchema } from './config.schema';
       },
     }),
     AuthModule,
+    NotesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
