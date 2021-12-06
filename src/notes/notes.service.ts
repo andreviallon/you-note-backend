@@ -57,10 +57,11 @@ export class NotesService {
   }
 
   public async updateNote(
+    id: string,
     updateNoteDto: UpdateNoteDto,
     user: User,
   ): Promise<Note> {
-    const note = await this.getNoteById(updateNoteDto.id, user);
+    const note = await this.getNoteById(id, user);
 
     note.title = updateNoteDto.title;
     note.videoLink = updateNoteDto.videoLink;
