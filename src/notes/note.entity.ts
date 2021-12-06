@@ -10,10 +10,10 @@ export class Note {
   @Column()
   title: string;
 
-  @Column()
+  @Column({ nullable: true })
   videoLink: string;
 
-  @Column()
+  @Column({ nullable: true })
   content: string;
 
   @ManyToOne(() => User, (user) => user.notes, { eager: false })
