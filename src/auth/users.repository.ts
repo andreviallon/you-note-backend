@@ -6,7 +6,7 @@ import * as bcrypt from 'bcrypt';
 
 @EntityRepository(User)
 export class UsersRepository extends Repository<User> {
-  async createUser(authCredentialsDto: AuthCredentialsDto): Promise<void> {
+  async createUser(authCredentialsDto: AuthCredentialsDto): Promise<string> {
     const { email, password } = authCredentialsDto;
 
     const salt = await bcrypt.genSalt();
@@ -14,7 +14,8 @@ export class UsersRepository extends Repository<User> {
 
     const user = this.create({ email, password: hashedPassword });
     try {
-      await this.save(user);
+      const createdUser = await this.save(user);
+      return createdUser.id;
     } catch (error) {
       UserError.handleUserError(error);
     }
